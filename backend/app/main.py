@@ -18,9 +18,22 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Local Finder API", lifespan=lifespan)
 
+# Allowed CORS Origins
+origins = [
+    "https://nearby-watch.netlify.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+]
+
+# Include FRONTEND_URL if set in environment
+if hasattr(settings, "FRONTEND_URL") and settings.FRONTEND_URL:
+    origins.append(settings.FRONTEND_URL.rstrip("/"))
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.FRONTEND_URL, "http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=origins,
+    allow_origin_regex=r"https://.*--nearby-watch\.netlify\.app",  # Matches Netlify previews
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
