@@ -1,0 +1,4 @@
+# Only needed to run tests/smoke_test.py locally (in-memory Mongo mock).
+# Not required to run the actual app.
+mongomock-motor==0.0.36
+websocket-client==1.8.0
