@@ -138,15 +138,3 @@ frontend/
     components/        Navbar, PostCard, MapView, ProtectedRoute, ToastStack
     pages/              Home (map/list), CreatePost, PostDetail, MyPosts, Notifications, auth pages
 ```
-
-## What's intentionally out of scope for this MVP
-
-- Full moderation queue for reported posts (currently just a counter)
-- Push notifications when the browser tab isn't open (would need a service
-  worker + Web Push, not WebSockets)
-- Multi-instance / horizontally-scaled deployment (would need the Redis swap
-  described above)
-
-These are reasonable, honest things to name as "next steps" if this comes up
-in an interview — the code is structured so each one is an addition, not a
-rewrite.
